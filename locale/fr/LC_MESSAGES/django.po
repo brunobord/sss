@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Scrum System\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-11 00:34+0100\n"
+"PO-Revision-Date: 2010-11-11 00:34+0100\n"
+"Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
+"Language-Team: Bruno Bord <bruno@jehaisleprintemps.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+
+#: models.py:9
+msgid "label"
+msgstr "libellé"
+
+#: models.py:10
+msgid "description"
+msgstr "description"
+
+#: models.py:11
+msgid "priority"
+msgstr "priorité"
+
+#: models.py:12
+msgid "Please rank this item. The highest score means it's the top most priority"
+msgstr "Attribue une priorité à cet élément. Plus le score est haut, plus l'importance est grande"
+
+#: models.py:14
+msgid "story points"
+msgstr "points d'histoire"
+
+#: models.py:16
+msgid "Story points describe the relative difficulty of each task"
+msgstr "Les points d'histoire décrivent la difficulté relative de chaque tâche"
+
+#: models.py:17
+msgid "done"
+msgstr "fait"
+
+#: models.py:18
+msgid "Check this if you've done the task"
+msgstr "Cocher cette case termine la tâche"
+
+#: models.py:19
+msgid "date created"
+msgstr "date de création"
+
+#: models.py:20
+msgid "date modified"
+msgstr "date de modification"
+
+#: models.py:23
+msgid "backlog item"
+msgstr "élément du backlog"
+
+#: models.py:24
+msgid "backlog items"
+msgstr "éléments du backlog"
+

@@ -7,7 +7,7 @@ class BacklogItem(models.Model):
     STORY_POINT_CHOICES = ((x, x) for x in (0, .5, 1, 2, 3, 5, 8, 13, 20, 40, 100))
 
     label = models.CharField(_('label'), max_length=255)
-    description = models.TextField(_('label'), blank=True)
+    description = models.TextField(_('description'), blank=True)
     priority = models.PositiveIntegerField(_('priority'), default=0,
         help_text=_("Please rank this item. The highest score means it's the"
         " top most priority"))

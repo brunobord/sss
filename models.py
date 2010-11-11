@@ -4,14 +4,14 @@ from django.utils.translation import ugettext as _
 
 class BacklogItem(models.Model):
 
-    STORY_POINT_CHOICES = ((x, x) for x in (0, .5, 1, 2, 3, 5, 8, 13, 20, 40, 100))
+    STORY_POINT_CHOICES = ((x, x) for x in (0, 1, 2, 3, 5, 8, 13, 20, 40, 100))
 
     label = models.CharField(_('label'), max_length=255)
     description = models.TextField(_('description'), blank=True)
     priority = models.PositiveIntegerField(_('priority'), default=0,
         help_text=_("Please rank this item. The highest score means it's the"
         " top most priority"))
-    story_points = models.FloatField(_('story points'),
+    story_points = models.PositiveIntegerField(_('story points'),
         choices=STORY_POINT_CHOICES,
         help_text=_("Story points describe the relative difficulty of each task"))
     done = models.BooleanField(_('done'), default=False,
@@ -31,4 +31,3 @@ class BacklogItem(models.Model):
             self.date_created = datetime.now()
         self.date_modified = datetime.now()
         super(BacklogItem, self).save()
-

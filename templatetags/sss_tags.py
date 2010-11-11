@@ -15,4 +15,4 @@ def project_summary():
             _("Remaining points %(story_points__sum)d") % qs.aggregate(Sum('story_points'))
         ))
     else:
-        return ""
+        return _("Either your project hasn't started, or it's completely done! Next?")

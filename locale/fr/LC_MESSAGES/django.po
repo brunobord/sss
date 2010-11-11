@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Scrum System\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-11 01:08+0100\n"
-"PO-Revision-Date: 2010-11-11 01:08+0100\n"
+"POT-Creation-Date: 2010-11-11 01:25+0100\n"
+"PO-Revision-Date: 2010-11-11 01:26+0100\n"
 "Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "Language-Team: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "MIME-Version: 1.0\n"
@@ -75,4 +75,8 @@ msgstr "Tâches restantes %d"
 #, python-format
 msgid "Remaining points %(story_points__sum)d"
 msgstr "Nb de points restants %(story_points__sum)d"
+
+#: templatetags/sss_tags.py:18
+msgid "Either your project hasn't started, or it's completely done! Next?"
+msgstr "Ou bien ce projet n'a pas démarré, ou il est terminé ! Suivant ?"
 

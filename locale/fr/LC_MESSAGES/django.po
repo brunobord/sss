@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Scrum System\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-11 01:25+0100\n"
-"PO-Revision-Date: 2010-11-11 01:26+0100\n"
+"POT-Creation-Date: 2010-11-11 01:32+0100\n"
+"PO-Revision-Date: 2010-11-11 01:33+0100\n"
 "Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "Language-Team: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: FRANCE\n"
+
+#: admin.py:8
+msgid "Mark these items as done"
+msgstr "Marquer ces éléments comme terminés"
 
 #: models.py:9
 msgid "label"

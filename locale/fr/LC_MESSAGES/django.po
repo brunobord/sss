@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Scrum System\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-11 00:34+0100\n"
-"PO-Revision-Date: 2010-11-11 00:34+0100\n"
+"POT-Creation-Date: 2010-11-11 01:08+0100\n"
+"PO-Revision-Date: 2010-11-11 01:08+0100\n"
 "Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "Language-Team: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "MIME-Version: 1.0\n"
@@ -65,4 +65,14 @@ msgstr "élément du backlog"
 #: models.py:24
 msgid "backlog items"
 msgstr "éléments du backlog"
+
+#: templatetags/sss_tags.py:14
+#, python-format
+msgid "Tasks remaining %d"
+msgstr "Tâches restantes %d"
+
+#: templatetags/sss_tags.py:15
+#, python-format
+msgid "Remaining points %(story_points__sum)d"
+msgstr "Nb de points restants %(story_points__sum)d"
 

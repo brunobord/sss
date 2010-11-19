@@ -8,7 +8,7 @@ class BacklogItem(models.Model):
 
     label = models.CharField(_('label'), max_length=255)
     description = models.TextField(_('description'), blank=True)
-    priority = models.PositiveIntegerField(_('priority'), default=0,
+    priority = models.PositiveIntegerField(_('priority'), default=0, unique=True,
         help_text=_("Please rank this item. The highest score means it's the"
         " top most priority"))
     story_points = models.PositiveIntegerField(_('story points'),

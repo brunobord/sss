@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Scrum System\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-11 01:32+0100\n"
-"PO-Revision-Date: 2010-11-11 01:33+0100\n"
+"POT-Creation-Date: 2010-11-20 14:47+0100\n"
+"PO-Revision-Date: 2010-11-20 14:51+0100\n"
 "Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "Language-Team: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "MIME-Version: 1.0\n"
@@ -70,17 +70,29 @@ msgstr "élément du backlog"
 msgid "backlog items"
 msgstr "éléments du backlog"
 
-#: templatetags/sss_tags.py:14
+#: templatetags/sss_tags.py:16
 #, python-format
 msgid "Tasks remaining %d"
 msgstr "Tâches restantes %d"
 
-#: templatetags/sss_tags.py:15
+#: templatetags/sss_tags.py:17
 #, python-format
 msgid "Remaining points %(story_points__sum)d"
 msgstr "Nb de points restants %(story_points__sum)d"
 
-#: templatetags/sss_tags.py:18
+#: templatetags/sss_tags.py:20
 msgid "Either your project hasn't started, or it's completely done! Next?"
 msgstr "Ou bien ce projet n'a pas démarré, ou il est terminé ! Suivant ?"
+
+#: templatetags/sss_tags.py:59
+msgid "Burndown Chart"
+msgstr "Graphe de burndown"
+
+#: templatetags/sss_tags.py:60
+msgid "estimated data"
+msgstr "données estimées"
+
+#: templatetags/sss_tags.py:61
+msgid "actual data"
+msgstr "données réelles"
 

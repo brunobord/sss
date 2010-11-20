@@ -26,7 +26,7 @@ def project_burndown():
     """Display a burndown chart, using Google Chart API. If your network
     connection is down, it won't work."""
 
-    GOOGLE_CHART_URL = "http://chart.apis.google.com/chart?chs=%(width)dx%(height)d&chtt=%(title)s&cht=lc&chdl=%(estimated_label)s|%(actual_label)s&chco=FF0000,00FF00&chds=0,%(max_y)d&chd=t:%(ideal_data)s|%(current_data)s"    
+    GOOGLE_CHART_URL = "http://chart.apis.google.com/chart?chs=%(width)dx%(height)d&chtt=%(title)s&cht=lc&chdl=%(estimated_label)s|%(actual_label)s&chco=FF0000,00FF00&chds=0,%(max_y)d&chd=t:%(ideal_data)s|%(current_data)s&chxr=0,0,%(max_x)d,2|1,0,%(max_y)d,%(step_y)d&chxt=x,y"    
     BURNDOWN_IMG = '<img src="%s" alt="%s" />'
     
     qs = BacklogItem.objects.all()
@@ -65,6 +65,7 @@ def project_burndown():
         'current_data': ",".join(current_data),
         'max_x': max_x,
         'max_y': total_points,
+        'step_y': int(total_points / 5),
         'width': 600, 'height': 250,
         'title': _('Burndown Chart'),
         'estimated_label': _('estimated data'),

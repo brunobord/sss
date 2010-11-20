@@ -2,7 +2,8 @@
 {% load sss_tags %}
 {% block footer %}
 
+<div id="footer">
 {% project_burndown %}
-
-<div id="footer">{% project_summary %}</div>
+<p>{% project_summary %}</p>
+</div>
 {% endblock %}

@@ -2,14 +2,42 @@
 Simple Scrum System
 ===================
 
-Usage
------
+Quick start
+-----------
 
 * Install it as a normal django application,
 * Sync your DB.
 * Use it through your admin site.
 
 Done.
+
+Overview
+--------
+
+Simple Scrum System is a basic Django-based Scrum-like project manager. It takes
+advantage of the automagic admin contrib site.
+
+Features
+~~~~~~~~
+
+With Simple Scrum System, you can:
+
+* add items to your backlog (including a free text area to describe them),
+* evaluate and rate them with story points and assign them priority
+* mark tasks as done
+* see your burndown chart
+
+Limitations
+~~~~~~~~~~~
+
+At the moment, Simple Scrum System only allows you to manage one sprint, and
+only one project. This feature may be improved in the near future.
+
+Parameters
+~~~~~~~~~~
+
+In the ``sss/conf/settings.py`` file, you can adapt your sprint length.
+SPRINT_NORMAL_DURATION is the number of days since the start of the sprint.
 
 License
 -------

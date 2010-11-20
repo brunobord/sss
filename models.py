@@ -26,8 +26,9 @@ class BacklogItem(models.Model):
     def __unicode__(self):
         return self.label
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if self.date_created == None:
             self.date_created = datetime.now()
-        self.date_modified = datetime.now()
-        super(BacklogItem, self).save()
+        if not force_update:
+            self.date_modified = datetime.now()
+        super(BacklogItem, self).save(force_insert, force_update)

@@ -4,11 +4,12 @@ from django.db.models import Sum
 from django.utils.translation import ugettext as _
 from sss.models import BacklogItem
 
-
 register = template.Library()
+
 
 @register.simple_tag
 def project_summary():
+    "Display a simple summary of the project"
     qs = BacklogItem.objects.filter(done=False)
     if qs.count():
         return " / ".join((
@@ -20,23 +21,43 @@ def project_summary():
 
 
 @register.simple_tag
-def project_burndown_url():
+def project_burndown():
+    """Display a burndown chart, using Google Chart API. If your network
+    connection is down, it won't work."""
+
+    GOOGLE_CHART_URL = "http://chart.apis.google.com/chart?chs=%(width)dx%(height)d&chtt=%(title)s&cht=lc&chdl=%(estimated_label)s|%(actual_label)s&chco=FF0000,00FF00&chds=0,%(max_y)d&chd=t:%(ideal_data)s|%(current_data)s"    
+    BURNDOWN_IMG = '<img src="%s" alt="burndown chart" />'
+    
     qs = BacklogItem.objects.all()
+    
+    if qs.count() == 0:
+        return "#"
+    
     first = qs.order_by('date_created')[0]
 
     total_points = qs.aggregate(Sum('story_points'))['story_points__sum']
 
     ideal_data = []
     current_data = []
-    for x in range(0, 14):
-        points = total_points - (total_points * (x/14.0))
+    for x in range(0, 15):
+        points = total_points - (total_points * (x/15.0))
         ideal_data.append(str(points))
         # current
-        current_day = first.date_created + datetime.timedelta(days=x)
+        current_day = datetime.datetime(first.date_created.year, first.date_created.month, first.date_created.day, 23, 59, 59) + datetime.timedelta(days=x)
         points = qs.filter(done=True, date_modified__lte=current_day).aggregate(Sum('story_points'))['story_points__sum']
         if points is None:
             points = 0
         current_data.append(str(total_points - points))
     ideal_data.append('0')
 
-    return "http://chart.apis.google.com/chart?chs=600x250&chtt=Burndown&cht=lc&chdl=estimated|actual&chco=FF0000,00FF00&chxr=0,0,30,2|1,0,40,2&chds=0,40&chd=t:%(ideal_data)s|%(current_data)s" % {'ideal_data': ",".join(ideal_data), 'current_data': ",".join(current_data)}
+    burndown_url = GOOGLE_CHART_URL % {
+        'ideal_data': ",".join(ideal_data),
+        'current_data': ",".join(current_data),
+        'max_x': 14,
+        'max_y': total_points,
+        'width': 600, 'height': 250,
+        'title': _('Burndown Chart'),
+        'estimated_label': _('estimated data'),
+        'actual_label': _('actual data'),
+    }
+    return BURNDOWN_IMG % burndown_url

@@ -9,7 +9,7 @@ mark_as_done.short_description = _("Mark these items as done")
 
 class BacklogItemAdmin(admin.ModelAdmin):
     ordering = ('-priority',)
-    list_display = ['label', 'priority', 'story_points', 'done']
+    list_display = ['label', 'priority', 'story_points', 'done', 'date_created', 'date_modified']
     list_filter = ('done',)
     readonly_fields = ('date_created', 'date_modified')
     actions = [mark_as_done]

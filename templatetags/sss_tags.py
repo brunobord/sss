@@ -66,9 +66,8 @@ def project_burndown():
         current_day = datetime.datetime(
             first_date_created.year,
             first_date_created.month,
-            first_date_created.day, 23, 59, 59)
-        + datetime.timedelta(days=x)
-        points = qs.filter(done=True, date_modified__lte=current_day).aggregate(Sum('story_points'))['story_points__sum']
+            first_date_created.day, 23, 59, 59) + datetime.timedelta(days=x)
+        points = qs.filter(done=True, date_done__lte=current_day).aggregate(Sum('story_points'))['story_points__sum']
         if points is None:
             points = 0
         current_data.append(str(total_points - points))
@@ -77,7 +76,6 @@ def project_burndown():
     # today position
     today_delta = datetime.datetime.now() - first_date_created
     today_position = (today_delta.days * 100) / max_x
-    print today_delta.days, max_x 
 
     burndown_url = GOOGLE_CHART_URL % {
         'ideal_data': ",".join(ideal_data),

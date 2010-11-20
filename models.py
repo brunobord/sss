@@ -42,8 +42,11 @@ class BacklogItem(models.Model):
         return self.label
 
     def save(self, force_insert=False, force_update=False):
+        now = datetime.now()
         if self.date_created == None:
-            self.date_created = datetime.now()
+            self.date_created = now
         if not force_update:
-            self.date_modified = datetime.now()
+            self.date_modified = now
+        if not force_update and self.date_done is None and self.done:
+            self.date_done = now
         super(BacklogItem, self).save(force_insert, force_update)

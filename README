@@ -27,11 +27,34 @@ With Simple Scrum System, you can:
 * mark tasks as done
 * see your burndown chart
 
-Limitations
-~~~~~~~~~~~
+Usual workflow
+~~~~~~~~~~~~~~
 
-At the moment, Simple Scrum System only allows you to manage one sprint, and
-only one project. This feature may be improved in the near future.
+1. Go to the admin site and select the "sss" section.
+2. add one or as many as you want backlog items you need / want.
+3. once you have sorted them by priority, you must select the ones you will
+   add to your first sprint.
+   
+   3.1. on the list page, select the checkboxes of the "n" first elements until
+        your sprint is "full" (i.e. your maximum velocity is reached)
+   3.2. On the dropdown combo, pick the "Assign these items to current sprint"
+        option.
+   3.3. Click on submit. Here you are, you now have your sprint backlog ready.
+
+4. Work on these features. Once they're done, mark them as done.
+5. Once your sprint is over (i.e. all of the features are done), you'll have to:
+
+   5.1. Select the tasks on the list page,
+   5.2. On the dropdown combo, pick the "Unassign these items out of the current
+   sprint" option.
+   5.3. Click on submit.
+   
+Repeat the step *3* as many times as possible, until all of your tasks are done.
+
+.. note::
+
+    Don't forget you have filters that'll help you to navigate through the "done
+    / not yet done" and "current / out of current sprint" backlog elements.
 
 Parameters
 ~~~~~~~~~~

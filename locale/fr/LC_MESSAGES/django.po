@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Scrum System\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-20 14:52+0100\n"
-"PO-Revision-Date: 2010-11-20 14:52+0100\n"
+"POT-Creation-Date: 2010-11-20 23:45+0100\n"
+"PO-Revision-Date: 2010-11-20 23:46+0100\n"
 "Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "Language-Team: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,81 +18,102 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: FRANCE\n"
 
-#: admin.py:8
+#: admin.py:9
 msgid "Mark these items as done"
 msgstr "Marquer ces éléments comme terminés"
 
-#: models.py:9
+#: admin.py:14
+msgid "Assign these items to current sprint"
+msgstr "Assigner ces éléments au sprint en cours"
+
+#: admin.py:19
+msgid "Unassign these items out of the current sprint"
+msgstr "Sortir ces éléments du sprint en cours"
+
+#: models.py:19
 msgid "label"
 msgstr "libellé"
 
-#: models.py:10
+#: models.py:20
 msgid "description"
 msgstr "description"
 
-#: models.py:11
+#: models.py:21
 msgid "priority"
 msgstr "priorité"
 
-#: models.py:12
+#: models.py:22
 msgid "Please rank this item. The highest score means it's the top most priority"
 msgstr "Attribue une priorité à cet élément. Plus le score est haut, plus l'importance est grande"
 
-#: models.py:14
+#: models.py:24
 msgid "story points"
 msgstr "points d'histoire"
 
-#: models.py:16
+#: models.py:26
 msgid "Story points describe the relative difficulty of each task"
 msgstr "Les points d'histoire décrivent la difficulté relative de chaque tâche"
 
-#: models.py:17
+#: models.py:27
 msgid "done"
 msgstr "fait"
 
-#: models.py:18
+#: models.py:28
 msgid "Check this if you've done the task"
 msgstr "Cocher cette case termine la tâche"
 
-#: models.py:19
+#: models.py:29
 msgid "date created"
 msgstr "date de création"
 
-#: models.py:20
+#: models.py:30
 msgid "date modified"
 msgstr "date de modification"
 
-#: models.py:23
+#: models.py:31
+msgid "current sprint"
+msgstr "sprint en cours"
+
+#: models.py:32
+msgid "date done"
+msgstr "date de fin"
+
+#: models.py:38
 msgid "backlog item"
 msgstr "élément du backlog"
 
-#: models.py:24
+#: models.py:39
 msgid "backlog items"
 msgstr "éléments du backlog"
 
-#: templatetags/sss_tags.py:16
+#: templatetags/sss_tags.py:18
 #, python-format
 msgid "Tasks remaining %d"
 msgstr "Tâches restantes %d"
 
-#: templatetags/sss_tags.py:17
+#: templatetags/sss_tags.py:19
 #, python-format
 msgid "Remaining points %(story_points__sum)d"
 msgstr "Nb de points restants %(story_points__sum)d"
 
-#: templatetags/sss_tags.py:20
+#: templatetags/sss_tags.py:22
 msgid "Either your project hasn't started, or it's completely done! Next?"
 msgstr "Ou bien ce projet n'a pas démarré, ou il est terminé ! Suivant ?"
 
-#: templatetags/sss_tags.py:59
+#: templatetags/sss_tags.py:46
+msgid "No backlog, no chart yet"
+msgstr "pas de backlog, pas de graphe"
+
+#: templatetags/sss_tags.py:87
+#: templatetags/sss_tags.py:92
 msgid "Burndown Chart"
 msgstr "Graphe de burndown"
 
-#: templatetags/sss_tags.py:60
+#: templatetags/sss_tags.py:88
 msgid "estimated data"
 msgstr "données estimées"
 
-#: templatetags/sss_tags.py:61
+#: templatetags/sss_tags.py:89
 msgid "actual data"
 msgstr "données réelles"
 

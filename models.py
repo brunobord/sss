@@ -2,6 +2,8 @@ from datetime import datetime
 from django.db import models
 from django.utils.translation import ugettext as _
 
+from sss.managers import CurrentSprintManager
+
 class BacklogItem(models.Model):
     """A Backlog Item is a task, a feature wanted for the project you're
     building.
@@ -26,6 +28,11 @@ class BacklogItem(models.Model):
         help_text=_("Check this if you've done the task"))
     date_created = models.DateTimeField(_('date created'), default=datetime.now)
     date_modified = models.DateTimeField(_('date modified'), default=datetime.now)
+    current_sprint = models.BooleanField(_('current sprint'), default=False)
+    date_done = models.DateTimeField(_('date done'), default=None, blank=True, null=True)
+    
+    objects = models.Manager()
+    current = CurrentSprintManager()
 
     class Meta:
         verbose_name = _('backlog item')
@@ -35,8 +42,11 @@ class BacklogItem(models.Model):
         return self.label
 
     def save(self, force_insert=False, force_update=False):
+        now = datetime.now()
         if self.date_created == None:
-            self.date_created = datetime.now()
+            self.date_created = now
         if not force_update:
-            self.date_modified = datetime.now()
+            self.date_modified = now
+        if not force_update and self.date_done is None and self.done:
+            self.date_done = now
         super(BacklogItem, self).save(force_insert, force_update)

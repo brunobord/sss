@@ -12,7 +12,7 @@ register = template.Library()
 @register.simple_tag
 def project_summary():
     "Display a simple summary of the project"
-    qs = BacklogItem.objects.filter(done=False)
+    qs = BacklogItem.current.filter(done=False)
     if qs.count():
         return " / ".join((
             _("Tasks remaining %d") % qs.count(),
@@ -40,7 +40,7 @@ def project_burndown():
         ])
     BURNDOWN_IMG = '<img src="%s" alt="%s" />'
 
-    qs = BacklogItem.objects.all()
+    qs = BacklogItem.current.all()
 
     if qs.count() == 0:
         return _('No backlog, no chart yet')

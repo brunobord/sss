@@ -3,6 +3,14 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 class BacklogItem(models.Model):
+    """A Backlog Item is a task, a feature wanted for the project you're
+    building.
+    
+    You'll have to rate it on two scales:
+        * priority - the highest, the most important it is
+        * story points - represents relative load and/or difficulty to perform
+          or implement the feature. 
+    """
 
     STORY_POINT_CHOICES = ((x, x) for x in (0, 1, 2, 3, 5, 8, 13, 20, 40, 100))
 

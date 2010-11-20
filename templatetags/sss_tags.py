@@ -5,6 +5,7 @@ from django.utils.translation import ugettext as _
 from sss.models import BacklogItem
 from sss.conf.settings import SPRINT_NORMAL_DURATION
 
+
 register = template.Library()
 
 
@@ -44,8 +45,8 @@ def project_burndown():
     if qs.count() == 0:
         return _('No backlog, no chart yet')
 
-    first = qs.order_by('date_created')[0]
-    delta = datetime.datetime.now() - first.date_created
+    first_date_created = qs.order_by('date_created')[0].date_created
+    delta = datetime.datetime.now() - first_date_created
     max_x = SPRINT_NORMAL_DURATION
     if delta.days > SPRINT_NORMAL_DURATION:
         max_x = delta.days
@@ -62,7 +63,11 @@ def project_burndown():
         else:
             ideal_data.append('0')
         # current
-        current_day = datetime.datetime(first.date_created.year, first.date_created.month, first.date_created.day, 23, 59, 59) + datetime.timedelta(days=x)
+        current_day = datetime.datetime(
+            first_date_created.year,
+            first_date_created.month,
+            first_date_created.day, 23, 59, 59)
+        + datetime.timedelta(days=x)
         points = qs.filter(done=True, date_modified__lte=current_day).aggregate(Sum('story_points'))['story_points__sum']
         if points is None:
             points = 0
@@ -70,7 +75,7 @@ def project_burndown():
     ideal_data.append('0')
     
     # today position
-    today_delta = datetime.datetime.now() - first.date_created
+    today_delta = datetime.datetime.now() - first_date_created
     today_position = (today_delta.days * 100) / max_x
     print today_delta.days, max_x 
 

@@ -13,5 +13,12 @@ setup(
     keywords='django scrum',
     url='https://bitbucket.org/brunobord/sss/',
     setup_requires=['setuptools_hg'],
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Environment :: Web Environment',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development',
+        'Framework :: Django',
+    ]
 
 )

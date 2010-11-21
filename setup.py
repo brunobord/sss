@@ -19,7 +19,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development',
         'Framework :: Django',
-        'License :: WTFPL',
+        'License :: Freely Distributable',
         'Operating System :: OS Independant',
     ],
     long_description = open('README', 'r').read(),

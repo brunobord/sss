@@ -35,19 +35,19 @@ Usual workflow
 3. once you have sorted them by priority, you must select the ones you will
    add to your first sprint.
    
-   3.1. on the list page, select the checkboxes of the "n" first elements until
-        your sprint is "full" (i.e. your maximum velocity is reached)
-   3.2. On the dropdown combo, pick the "Assign these items to current sprint"
-        option.
-   3.3. Click on submit. Here you are, you now have your sprint backlog ready.
+   1. on the list page, select the checkboxes of the "n" first elements until
+      your sprint is "full" (i.e. your maximum velocity is reached)
+   2. On the dropdown combo, pick the "Assign these items to current sprint"
+      option.
+   3. Click on submit. Here you are, you now have your sprint backlog ready.
 
 4. Work on these features. Once they're done, mark them as done.
 5. Once your sprint is over (i.e. all of the features are done), you'll have to:
 
-   5.1. Select the tasks on the list page,
-   5.2. On the dropdown combo, pick the "Unassign these items out of the current
-   sprint" option.
-   5.3. Click on submit.
+   1. Select the tasks on the list page,
+   2. On the dropdown combo, pick the "Unassign these items out of the current
+      sprint" option.
+   3. Click on submit.
    
 Repeat the step *3* as many times as possible, until all of your tasks are done.
 
@@ -65,20 +65,23 @@ SPRINT_NORMAL_DURATION is the number of days since the start of the sprint.
 License
 -------
 
+
 Simple Scrum System is published under the terms of the WTFPL, as follows:
+
+::
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                     Version 2, December 2004
 
- Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+    Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
 
- Everyone is permitted to copy and distribute verbatim or modified
- copies of this license document, and changing it is allowed as long
- as the name is changed.
+    Everyone is permitted to copy and distribute verbatim or modified
+    copies of this license document, and changing it is allowed as long
+    as the name is changed.
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
-  0. You just DO WHAT THE FUCK YOU WANT TO.
+    0. You just DO WHAT THE FUCK YOU WANT TO.
 
 

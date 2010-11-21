@@ -19,6 +19,9 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development',
         'Framework :: Django',
-    ]
-
+        'License :: WTFPL',
+        'Operating System :: OS Independant',
+    ],
+    long_description = open('README', 'r').read(),
+    download_url = 'http://pypi.python.org/pypi/sss',
 )

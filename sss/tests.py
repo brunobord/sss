@@ -9,7 +9,7 @@ class DateTestCase(TestCase):
             (date1.year, date1.month, date1.day),
             (date2.year, date2.month, date2.day)
         )
-    
+
     def assertNotSameDay(self, date1, date2):
         self.assertNotEquals(
             (date1.year, date1.month, date1.day),
@@ -18,18 +18,30 @@ class DateTestCase(TestCase):
 
 
 class SaveTest(DateTestCase):
-    
+
+    def setUp(self):
+        self.today = datetime.date.today()
+        self.item = BacklogItem(label='task 1', priority=1, story_points=1)
+        self.item.save()
+
     def test_save_creation_date(self):
-        today = datetime.date.today()
-        item = BacklogItem(label='task 1', priority=1, story_points=1)
-        item.save()
-        self.assertSameDay(item.date_created, today)
-        self.assertSameDay(item.date_modified, today)
-        
-    def test_force_update(self):
-        today = datetime.date.today()
-        item = BacklogItem(label='task 1', priority=1, story_points=1)
-        item.save()
-        item.date_created = datetime.date(2010, 10, 10)
-        item.save(force_update=True)
-        self.assertNotSameDay(item.date_created, today)
+        self.assertSameDay(self.item.date_created, self.today)
+        self.assertSameDay(self.item.date_modified, self.today)
+
+    def test_update_created(self):
+        self.item.date_created = datetime.date(2010, 10, 10)
+        self.item.save(force_update=True)
+        self.assertNotSameDay(self.item.date_created, self.today)
+
+    def test_save_date_done(self):
+        self.assertFalse(self.item.date_done)
+        self.item.done = True
+        self.item.save()
+        self.assertSameDay(self.item.date_done, self.today)
+
+    def test_update_done(self):
+        self.item.done = True
+        self.item.date_done = datetime.date(2010, 10, 10)
+        self.item.save(force_update=True)
+        self.assertNotSameDay(self.item.date_done, self.today)
+

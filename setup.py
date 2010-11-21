@@ -20,7 +20,7 @@ setup(
         'Topic :: Software Development',
         'Framework :: Django',
         'License :: Freely Distributable',
-        'Operating System :: OS Independant',
+        'Operating System :: OS Independent',
     ],
     long_description = open('README', 'r').read(),
     download_url = 'http://pypi.python.org/pypi/sss',

@@ -26,9 +26,10 @@ class BacklogItem(models.Model):
         help_text=_("Story points describe the relative difficulty of each task"))
     done = models.BooleanField(_('done'), default=False,
         help_text=_("Check this if you've done the task"))
+    current_sprint = models.BooleanField(_('current sprint'), default=False)
     date_created = models.DateTimeField(_('date created'), default=datetime.now)
     date_modified = models.DateTimeField(_('date modified'), default=datetime.now)
-    current_sprint = models.BooleanField(_('current sprint'), default=False)
+    date_started = models.DateTimeField(_('date started'), default=None, blank=True, null=True)
     date_done = models.DateTimeField(_('date done'), default=None, blank=True, null=True)
     
     objects = models.Manager()
@@ -46,7 +47,11 @@ class BacklogItem(models.Model):
         if self.date_created == None:
             self.date_created = now
         if not force_update:
+            # if forced by manual action on queryset / object
             self.date_modified = now
-        if not force_update and self.date_done is None and self.done:
-            self.date_done = now
+            if self.date_done is None and self.done:
+                self.date_done = now
+            if self.date_started is None and self.current_sprint:
+                self.date_started = now
+        
         super(BacklogItem, self).save(force_insert, force_update)

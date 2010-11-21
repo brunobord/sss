@@ -45,3 +45,14 @@ class SaveTest(DateTestCase):
         self.item.save(force_update=True)
         self.assertNotSameDay(self.item.date_done, self.today)
 
+    def test_save_date_started(self):
+        self.assertFalse(self.item.date_started)
+        self.item.current_sprint = True
+        self.item.save()
+        self.assertSameDay(self.item.date_started, self.today)
+        
+    def test_update_started(self):
+        self.item.current_sprint = True
+        self.item.date_started = datetime.date(2010, 10, 10)
+        self.item.save(force_update=True)
+        self.assertNotSameDay(self.item.date_started, self.today)

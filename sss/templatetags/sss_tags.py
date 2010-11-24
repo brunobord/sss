@@ -1,3 +1,4 @@
+import os
 import datetime
 from django import template
 from django.db.models import Sum
@@ -72,7 +73,7 @@ def project_burndown():
             points = 0
         current_data.append(str(total_points - points))
     ideal_data.append('0')
-    
+
     # today position
     today_delta = datetime.datetime.now() - first_date_started
     today_position = (today_delta.days * 100) / max_x
@@ -90,3 +91,11 @@ def project_burndown():
         'today_position': today_position,
     }
     return BURNDOWN_IMG % (burndown_url, _('Burndown Chart'))
+
+
+@register.simple_tag
+def sss_custom_js():
+    "A generic custom JS loader"
+    directory = os.path.dirname(__file__)
+    filepath = os.path.join(directory, 'static', 'jquery.flot.js')
+    return open(filepath, "r").read()

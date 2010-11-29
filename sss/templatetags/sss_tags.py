@@ -39,9 +39,15 @@ def burndown_compute():
 
     total_points = qs.aggregate(Sum('story_points'))['story_points__sum']
 
+    x_range = max_x + 1
+
     ideal_data = []
     current_data = []
-    x_range = max_x + 1
+
+    select_date = {'day_done': """strftime('%%Y-%%m-%%d', date_done)"""}
+
+    current_points = qs.extra(select=select_date).values('day_done', 'done').annotate(points=Sum('story_points'))
+
     for x in range(0, x_range):
         points = total_points - (total_points * (x/float(SPRINT_NORMAL_DURATION + 1)))
         if points > 0:
@@ -53,10 +59,9 @@ def burndown_compute():
             first_date_started.year,
             first_date_started.month,
             first_date_started.day, 23, 59, 59) + datetime.timedelta(days=x)
-        points = qs.filter(done=True, date_done__lte=current_day).aggregate(Sum('story_points'))['story_points__sum']
-        if points is None:
-            points = 0
+        points = sum(item['points'] for item in current_points if item['day_done'] <= str(current_day) and item['done'])
         current_data.append(str(total_points - points))
+        
     ideal_data.append('0')
 
     # today position
@@ -106,13 +111,13 @@ def project_burndown():
     """Display a burndown chart, using JQuery Flot lib.
     """
     FLOT_STRING = """<div id="placeholder" style="width:%(width)dpx;height:%(height)dpx;"></div>
-    <script id="source" language="javascript" type="text/javascript"> 
+    <script id="source" language="javascript" type="text/javascript">
         django.jQuery(function () {
             var ideal_data = {data: Array(%(ideal_data)s), label: "%(estimated_label)s", color: "#900"};
             var current_data = {data: Array(%(current_data)s), label: "%(actual_label)s", color: "#090"};
             django.jQuery.plot(django.jQuery("#placeholder"), [ ideal_data, current_data ]);
     });</script> """
-    
+
     ideal_data, current_data, max_x, total_points, today_position = burndown_compute()
 
     return FLOT_STRING % {

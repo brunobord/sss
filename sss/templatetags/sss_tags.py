@@ -108,8 +108,8 @@ def project_burndown():
     FLOT_STRING = """<div id="placeholder" style="width:%(width)dpx;height:%(height)dpx;"></div>
     <script id="source" language="javascript" type="text/javascript"> 
         django.jQuery(function () {
-            var ideal_data = [%(ideal_data)s];
-            var current_data = [%(current_data)s];
+            var ideal_data = {data: Array(%(ideal_data)s), label: "%(estimated_label)s", color: "#900"};
+            var current_data = {data: Array(%(current_data)s), label: "%(actual_label)s", color: "#090"};
             django.jQuery.plot(django.jQuery("#placeholder"), [ ideal_data, current_data ]);
     });</script> """
     
@@ -120,6 +120,8 @@ def project_burndown():
         'height': 250,
         'ideal_data': ','.join(r'[ %d, %s ]' % (x, y) for x, y in zip(range(0, max_x+15), ideal_data)),
         'current_data': ','.join(r'[ %d, %s ]' % (x, y) for x, y in zip(range(0, max_x+15), current_data)),
+        'estimated_label': _('estimated data'),
+        'actual_label': _('actual data'),
     }
 
 

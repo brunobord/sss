@@ -72,44 +72,6 @@ def burndown_compute():
 
 
 @register.simple_tag
-def project_burndown_google():
-    """Display a burndown chart, using Google Chart API. If your network
-    connection is down, it won't work."""
-
-    GOOGLE_CHART_URL = ''.join(
-        [
-            "http://chart.apis.google.com/chart?chs=%(width)dx%(height)d&chtt=%(title)s",
-            "&cht=lc&chdl=%(estimated_label)s|%(actual_label)s&chco=FF0000,00FF00",
-            "&chds=0,%(max_y)d&chd=t:%(ideal_data)s|%(current_data)s",
-            "&chxr=0,0,%(max_x)d,2|1,0,%(max_y)d,%(step_y)d&chxt=x,y,x",
-            "&chxl=2:|today|",
-            "&chxp=2,%(today_position)d",
-            "&chxtc=2,-180",
-            "", # TODO: line style
-        ])
-    BURNDOWN_IMG = '<img src="%s" alt="%s" />'
-
-    try:
-        ideal_data, current_data, max_x, total_points, today_position = burndown_compute()
-    except EmptyBurndownError, e:
-        return e
-
-    burndown_url = GOOGLE_CHART_URL % {
-        'ideal_data': ",".join(ideal_data),
-        'current_data': ",".join(current_data),
-        'max_x': max_x,
-        'max_y': total_points,
-        'step_y': int(total_points / 5),
-        'width': 600, 'height': 250,
-        'title': _('Burndown Chart'),
-        'estimated_label': _('estimated data'),
-        'actual_label': _('actual data'),
-        'today_position': today_position,
-    }
-    return BURNDOWN_IMG % (burndown_url, _('Burndown Chart'))
-
-
-@register.simple_tag
 def project_burndown():
     """Display a burndown chart, using JQuery Flot lib.
     """

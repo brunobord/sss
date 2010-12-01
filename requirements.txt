@@ -1,2 +1,2 @@
 Django>=1.2.3
-distribute==0.6.10
+distribute>=0.6

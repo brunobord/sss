@@ -5,7 +5,7 @@ from django.db.models import Sum
 from django.utils.translation import ugettext as _
 from sss.models import BacklogItem
 from sss.conf.settings import SPRINT_NORMAL_DURATION
-
+from sss.exceptions import EmptyBurndownError
 
 register = template.Library()
 
@@ -29,7 +29,7 @@ def burndown_compute():
     qs = BacklogItem.current.all()
 
     if qs.count() == 0:
-        return _('No backlog, no chart yet')
+        raise EmptyBurndownError(_('No backlog, no chart yet'))
 
     first_date_started = qs.order_by('date_started')[0].date_started
     delta = datetime.datetime.now() - first_date_started
@@ -89,7 +89,10 @@ def project_burndown_google():
         ])
     BURNDOWN_IMG = '<img src="%s" alt="%s" />'
 
-    ideal_data, current_data, max_x, total_points, today_position = burndown_compute()
+    try:
+        ideal_data, current_data, max_x, total_points, today_position = burndown_compute()
+    except EmptyBurndownError, e:
+        return e
 
     burndown_url = GOOGLE_CHART_URL % {
         'ideal_data': ",".join(ideal_data),
@@ -118,7 +121,10 @@ def project_burndown():
             django.jQuery.plot(django.jQuery("#placeholder"), [ ideal_data, current_data ]);
     });</script> """
 
-    ideal_data, current_data, max_x, total_points, today_position = burndown_compute()
+    try:
+        ideal_data, current_data, max_x, total_points, today_position = burndown_compute()
+    except EmptyBurndownError, e:
+        return e
 
     return FLOT_STRING % {
         "width": 600,

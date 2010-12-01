@@ -4,7 +4,7 @@ from django import template
 from django.db.models import Sum
 from django.utils.translation import ugettext as _
 from sss.models import BacklogItem
-from sss.conf.settings import SPRINT_NORMAL_DURATION
+from sss.conf.settings import SPRINT_NORMAL_DURATION, BURNDOWN_GRAPH_DIMENSIONS
 from sss.exceptions import EmptyBurndownError
 
 register = template.Library()
@@ -75,6 +75,7 @@ def burndown_compute():
 def project_burndown():
     """Display a burndown chart, using JQuery Flot lib.
     """
+    width, height = BURNDOWN_GRAPH_DIMENSIONS
     FLOT_STRING = """<div id="placeholder" style="width:%(width)dpx;height:%(height)dpx;"></div>
     <script id="source" language="javascript" type="text/javascript">
         django.jQuery(function () {
@@ -89,8 +90,8 @@ def project_burndown():
         return e
 
     return FLOT_STRING % {
-        "width": 600,
-        'height': 250,
+        "width": width,
+        'height': height,
         'ideal_data': ','.join(r'[ %d, %s ]' % (x, y) for x, y in zip(range(0, max_x+15), ideal_data)),
         'current_data': ','.join(r'[ %d, %s ]' % (x, y) for x, y in zip(range(0, max_x+15), current_data)),
         'estimated_label': _('estimated data'),

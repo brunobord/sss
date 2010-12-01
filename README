@@ -62,6 +62,11 @@ Parameters
 In the ``sss/conf/settings.py`` file, you can adapt your sprint length.
 SPRINT_NORMAL_DURATION is the number of days since the start of the sprint.
 
+You may want to edit the burndown graph size by changing the
+``BURNDOWN_GRAPH_DIMENSIONS`` parameter.
+
+Please note it's a tuple looking like: (width, height).
+
 License
 -------
 

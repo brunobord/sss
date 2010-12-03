@@ -1,0 +1,40 @@
+==============================
+Simple Scrum System Changelog
+==============================
+
+2010-12-03 - SimpleScrumSystem v1.2
+===================================
+
+* Major change: the burndown chart is now powered by JQuery.flot library.
+  you are no longer forced to be connected to the web to see your
+  chart. Yay!
+* Burndown chart optimisation. Much less queries to compute the graph,
+  we used to run a query per sprint day. Now we only run the "count"
+  query once, and reduce the result via Python. Isn't that nice towards
+  the DB servers?
+* a few more parameters you may want to change (chart dimensions)
+* minor bugfixes (requirements file, and rendering of an empty sprint).
+
+
+2010-11-21 - SimpleScrumSystem v1.1
+===================================
+
+* Minor bugfixes (setup.py)
+* Bugfix about the Burnown chart handling of start and end dates.
+
+Warning! This version is not retro-compatible with 1.0. Your data
+must be dumped via `dumpdata` before trying to upgrade (and then 
+reload it via `loaddata`)
+
+2010-11-21 - SimpleScrumSystem v1.0
+===================================
+
+Initial 1.0 release.
+
+Features:
+
+* add, edit, remove Stories (tasks, backlog elements), with appropriate
+  values (story points and priority)
+* assign them to the current sprint,
+* eventually close them as you finish your task
+* See a Burndown Chart (powered by Google Chart API)
